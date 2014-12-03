@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+<!-- INDEX PARTIAL -->
+    <main>
+      <h2 class="icon-droplet centerpiece"></h2>
+      <h1>Precipipipipitation<h1>
+      <h2>What's the chance it will rain?</h2>
+      <h3 class="city-select">Select Your City:</h3>
+      <ul ng-repeat="city in this.cities">
+        <li class="icon-office city-item"><a ng-href="/cities/{{city}}">{{city}}</a>
+      </ul>
+    </main>
+
+
+<!-- CITY PARTIAL -->
+    <h2 class= "icon-rain centerpiece">
+    <h1>{{this.cityName}}</h1>
+
+    <h3>Forecast</h3>
+    <div>{{this.forecast | json}}</div>
+
+  </body>
+</html>
