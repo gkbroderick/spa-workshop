@@ -1,0 +1,19 @@
+.clearfix
+  zoom: 1
+  &:before, &:after
+    content: '\0020'
+    display: block
+    overflow: hidden
+    visibility: hidden
+    width: 0
+    height: 0
+  &:after
+    clear: both
+
+
+
+.city-select
+  margin-top: 2%
+
+.city-item
+  margin-top: 1.5%
