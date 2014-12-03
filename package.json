@@ -1,5 +1,5 @@
 {
-  "name": "spa-workshop",
+  "name": "gm-spa-workshop",
   "version": "1.0.0",
   "description": "Aerobatic SPA workshop",
   "scripts": {
@@ -40,6 +40,6 @@
     "angular-aerobatic": "^1.0.0"
   },
   "_aerobatic": {
-    "appId": "Z16yiwRmP"
+    "appId": "b1bC5gydv"
   }
 }
