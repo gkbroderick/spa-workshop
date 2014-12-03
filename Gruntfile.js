@@ -14,6 +14,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    sass: {
+      dist: {
+        files: {
+          'app/css/style.css': 'app/scss/style.scss'
+        }
+      }
+    },
     cssmin: {
       minify: {
         src: ['bower_components/normalize-css/normalize.css', 'app/css/styles.css'],
@@ -30,8 +37,8 @@ module.exports = function(grunt) {
     },
     html2js: {
       // Compile partial views into an angular module called 'templates' (name is important).
-      // In debug mode template files are loaded directly via XHR. In release builds the 
-      // tmp/templates.js file should be included in the app.min.js script. Templates will be 
+      // In debug mode template files are loaded directly via XHR. In release builds the
+      // tmp/templates.js file should be included in the app.min.js script. Templates will be
       // preloaded in the $templateCache avoiding additional network round trips.
       options: {
         base: 'app',
@@ -86,6 +93,7 @@ module.exports = function(grunt) {
   });
 
   // Specify the sync arg to avoid blocking the watch
+  grunt.registerTask('style', ['sass']);
   grunt.registerTask('build', ['clean', 'jshint', 'html2js', 'cssmin', 'ngAnnotate', 'uglify', 'concat', 'copy:dist']);
   grunt.registerTask('test', ['karma']);
 
@@ -94,6 +102,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-ng-annotate');
