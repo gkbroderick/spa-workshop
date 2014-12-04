@@ -10,32 +10,53 @@ angular.module('directives').directive('barsChart', function($parse) {
       var watcher = function() {
         if (!scope.data) return;
 
-        var HEIGHT = 500;
+        var margin = {top: 20, right: 30, bottom: 30, left: 40};
+        var HEIGHT = 500 - (margin.top + margin.bottom);
         var BAR_WIDTH = 55;
+        var WIDTH = BAR_WIDTH * scope.data.length;
+        var dateFormat = d3.time.format('%X');
 
-        var x = d3.scale.linear()
-            .domain([0, d3.max(scope.data, function(d) { return d.temperature; })])
-            .range([0, HEIGHT]);
+        var y = d3.scale.linear()
+          .domain([0, d3.max(scope.data, function(d) { return d.temperature; })])
+          .range([HEIGHT, 0]);
+
+        var x = d3.scale.ordinal()
+          .domain(scope.data.map(function(d) { return d.time; }))
+          .rangeRoundBands([0, WIDTH], 0.1);
+
+        var xAxis = d3.svg.axis()
+          .scale(x)
+          .ticks(dateFormat)
+          .orient('bottom');
+
+        var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient('left');
 
         var chart = d3.select(element[0])
             .attr('width', BAR_WIDTH * scope.data.length)
-            .attr('height', HEIGHT);
+            .attr('height', HEIGHT + margin.top + margin.bottom)
+          .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
 
-        var bar = chart.selectAll('g')
-            .data(scope.data)
-          .enter().append('g')
-            .attr('transform', function(d, i) { return 'translate(' + i * BAR_WIDTH + ', 0)'; });
+        chart.append('g')
+          .attr('class', 'x axis')
+          .attr('transform', 'translate(0, ' + HEIGHT + ')')
+          .call(xAxis);
 
-        bar.append('rect')
-            .attr('height', function(d) { return x(d.temperature); })
-            .attr('y', function(d) { return HEIGHT - x(d.temperature); })
-            .attr('width', BAR_WIDTH - 1);
+        chart.append('g')
+          .attr('class', 'y axis')
+          .call(yAxis);
 
-        bar.append('text')
-            .attr('y', function(d) { return HEIGHT - x(d.temperature) - 10; })
-            .attr('x', BAR_WIDTH / 2)
-            //.attr('dy', '.1em')
-            .text(function(d) { return d.temperature; });
+        var bar = chart.selectAll('.bar')
+          .data(scope.data)
+        .enter().append('rect')
+          .attr('class', 'bar')
+          .attr('transform', function(d, i) { return 'translate(' + x(d.time) + ', 0)'; })
+          .attr('y', function(d) { return y(d.temperature); })
+          .attr('height', function(d) { return HEIGHT - y(d.temperature); })
+          .attr('width', x.rangeBand());
+
       }
 
       function type(d) {
