@@ -57,7 +57,7 @@ angular.module('directives').directive('barsChart', function($parse) {
           .attr('height', function(d) { return HEIGHT - y(d.temperature); })
           .attr('width', x.rangeBand());
 
-      }
+      };
 
       function type(d) {
         d.temperature = +d.temperature; // coerce to number

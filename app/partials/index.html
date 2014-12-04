@@ -1,6 +1,9 @@
-<div>
-  <h2>Cities</h2>
+<main>
+  <h2 class="icon-globe centerpiece"></h2>
+  <h1>City Temperatures<h1>
+  <h2>What's the Next 24 Hours in Your City going to be Like</h2>
+  <h3 class="city-select">Select Your City:</h3>
   <ul ng-repeat="city in this.cities">
-    <li><a ng-href="/cities/{{city}}">{{city}}</a>
+    <li class="icon-office city-item"><a ng-href="/cities/{{city}}">&nbsp {{city}}</a>
   </ul>
-</div>
+</main>
