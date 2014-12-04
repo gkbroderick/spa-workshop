@@ -22,6 +22,9 @@ angular.module('services').factory('geoLocation', function($q, $timeout) {
         case "new york":
           deferred.resolve([40.7142,-74.0064]);
           break;
+        case "los angeles":
+          deferred.resolve([34.0535, -118.2453]);
+          break;
         default:
           deferred.reject("Invalid city");
       }

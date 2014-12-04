@@ -10,14 +10,14 @@ module.exports = function(grunt) {
     uglify: {
       build: {
         files: {
-          'dist/app.min.js': ['tmp/templates.js', 'tmp/annotated.js']
+          'dist/app.min.js': ['tmp/templates.js', 'tmp/annotated.js', 'tmp/lib.js']
         }
       }
     },
     sass: {
       dist: {
         files: {
-          'app/css/style.css': 'app/scss/style.scss'
+          'app/css/styles.css': 'app/scss/style.scss'
         }
       }
     },
@@ -66,7 +66,19 @@ module.exports = function(grunt) {
         dest: 'dist/vendor.min.js',
       }
     },
+
     clean: ['dist', 'tmp'],
+
+    browserify: {
+      dev: {
+        src: ['lib/**/*.js'],
+        dest: 'tmp/lib.js',
+        options: {
+          transform: ['debowerify']
+        }
+      }
+    },
+
     // See https://github.com/karma-runner/grunt-karma for more options
     karma: {
       options: {
@@ -94,12 +106,13 @@ module.exports = function(grunt) {
 
   // Specify the sync arg to avoid blocking the watch
   grunt.registerTask('style', ['sass']);
-  grunt.registerTask('build', ['clean', 'jshint', 'html2js', 'cssmin', 'ngAnnotate', 'uglify', 'concat', 'copy:dist']);
+  grunt.registerTask('build', ['clean', 'jshint', 'html2js', 'cssmin', 'ngAnnotate', 'browserify:dev', 'uglify', 'concat', 'copy:dist']);
   grunt.registerTask('test', ['karma']);
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-sass');

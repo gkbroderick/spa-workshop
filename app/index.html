@@ -9,6 +9,7 @@
 
     <!-- Even though node_modules is in the root of the repo, yoke will resolve it correctly -->
     <link data-aero-build="debug" rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link data-aero-build="debug" rel="stylesheet" href="css/styles.css">
 
     <link rel="icon" href="/favicon.ico" />
@@ -21,6 +22,7 @@
     <!-- Consolidated release script which will be stripped from debug builds  -->
     <div data-aero-build="release">
       <!-- Use Google CDN for release builds -->
+
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.min.js"></script>
 
@@ -31,15 +33,18 @@
 
     <!-- Individual scripts for debug build -->
     <div data-aero-build="debug">
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
       <script src="node_modules/angular/angular.js"></script>
       <script src="node_modules/angular-route/angular-route.js"></script>
       <script src="node_modules/angular-aerobatic/angular-aerobatic.js"></script>
       <script src="js/app.js"></script>
+      <script src="js/directives/chartDir.js"></script>
       <script src="js/controllers/indexCtrl.js"></script>
       <script src="js/controllers/cityCtrl.js"></script>
       <script src="js/services/geoLocationService.js"></script>
       <script src="js/services/forecastService.js"></script>
       <script src="js/services/newsService.js"></script>
     </div>
+
   </body>
 </html>
