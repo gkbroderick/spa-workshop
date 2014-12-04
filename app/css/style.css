@@ -94,6 +94,7 @@ table {
   box-sizing: border-box; }
 
 body {
+  padding: 1em;
   font-family: "Open Sans", sans-serif;
   background-color: #00999e;
   color: #FFFFFF;
@@ -111,12 +112,16 @@ h2 {
 h3 {
   font-size: 1.5em; }
 
-#chart rect {
-  fill: #1EF8FF;
-  stroke: #FFFFFF;
-  stroke-width: 1; }
+a:hover, a:visited {
+  color: #e6e6e6; }
+
+#chart g {
+  background-color: #1EF8FF;
+  margin: #FFFFFF;
+  margin-width: 1; }
 #chart text {
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  color: #e6e6e6; }
 
 .clearfix {
   zoom: 1; }
@@ -138,5 +143,8 @@ h3 {
 
 .centerpiece {
   font-size: 12em; }
+
+.last {
+  margin-bottom: 1em; }
 
 /*# sourceMappingURL=style.css.map */

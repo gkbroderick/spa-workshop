@@ -7,7 +7,7 @@ $color3: #FFC196         !default; //tan (br blue complem)
 
 // Derivative colors
 // -------------------------
-$darker-color1:           darken($color1, 40%) !default;
+$darker-color1:           darken($color1, 10%) !default;
 $darker-color2:           darken($color2, 25%) !default;
 $darker2-color2:          darken($color2, 50%) !default;
 
